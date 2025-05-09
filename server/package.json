@@ -23,6 +23,7 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --silent --force-exit --coverage --config ./e2e/jest.e2e.config.json",
     "test:watch": "jest --watch",
+    "typeorm:migrate": "node --require ts-node/register ../node_modules/typeorm/cli.js migration:run --config src/orm.config.ts",
     "webpack:prod": "npm run clean && webpack --config webpack.server.prod.config.js && npm run copy-resources"
   },
   "jest": {
