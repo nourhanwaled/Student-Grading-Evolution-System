@@ -1,0 +1,34 @@
+// Entities
+entity User {}
+
+entity Student {}
+
+entity Teacher {}
+
+entity Course {
+  name String
+  description String
+}
+
+entity TeacherCourse {}
+
+entity StudentCourse {}
+
+entity StudentCourseGrade {
+  score Float
+}
+
+// Relationships
+relationship OneToOne {
+  Student{user} to User with builtInEntity
+  Teacher{user} to User with builtInEntity
+}
+
+relationship OneToMany {
+  Student to StudentCourse{student}
+  Course to StudentCourse{course}
+  Teacher to TeacherCourse{teacher}
+  Course to TeacherCourse{course}
+  Student to StudentCourseGrade{student}
+  Course to StudentCourseGrade{course}
+}

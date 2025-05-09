@@ -1,0 +1,10 @@
+{
+  "annotations": {
+    "changelogDate": "20250509160034"
+  },
+  "applications": "*",
+  "dto": true,
+  "fields": [],
+  "name": "User",
+  "relationships": []
+}

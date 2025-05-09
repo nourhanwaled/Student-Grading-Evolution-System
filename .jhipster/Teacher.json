@@ -1,0 +1,25 @@
+{
+  "annotations": {
+    "changelogDate": "20250509160036"
+  },
+  "applications": "*",
+  "dto": true,
+  "fields": [],
+  "name": "Teacher",
+  "relationships": [
+    {
+      "otherEntityName": "user",
+      "relationshipName": "user",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-one",
+      "relationshipWithBuiltInEntity": true
+    },
+    {
+      "otherEntityName": "teacherCourse",
+      "otherEntityRelationshipName": "teacher",
+      "relationshipName": "teacherCourse",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ]
+}

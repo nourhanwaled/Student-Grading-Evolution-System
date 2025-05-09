@@ -1,0 +1,23 @@
+{
+  "annotations": {
+    "changelogDate": "20250509160039"
+  },
+  "applications": "*",
+  "dto": true,
+  "fields": [],
+  "name": "StudentCourse",
+  "relationships": [
+    {
+      "otherEntityName": "student",
+      "relationshipName": "student",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "course",
+      "relationshipName": "course",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ]
+}

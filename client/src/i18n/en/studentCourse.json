@@ -1,0 +1,25 @@
+{
+  "studentGradingEvalutionSystemApp": {
+    "studentCourse": {
+      "home": {
+        "title": "Student Courses",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Student Course",
+        "createOrEditLabel": "Create or edit a Student Course",
+        "notFound": "No Student Courses found"
+      },
+      "created": "A new Student Course is created with identifier {{ param }}",
+      "updated": "A Student Course is updated with identifier {{ param }}",
+      "deleted": "A Student Course is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Student Course {{ id }}?"
+      },
+      "detail": {
+        "title": "Student Course"
+      },
+      "id": "ID",
+      "student": "Student",
+      "course": "Course"
+    }
+  }
+}
