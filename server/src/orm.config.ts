@@ -1,80 +1,29 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 
-function ormConfig(): TypeOrmModuleOptions {
-  const commonConf = {
-    SYNCRONIZE: false,
-    ENTITIES: [__dirname + '/domain/*.entity{.ts,.js}'],
-    MIGRATIONS: [__dirname + '/migrations/**/*{.ts,.js}'],
-    CLI: {
-      migrationsDir: 'src/migrations',
-    },
-    MIGRATIONS_RUN: true,
-  };
+const commonConf = {
+  SYNCRONIZE: false,
+  ENTITIES: [__dirname + '/domain/*.entity{.ts,.js}'],
+  MIGRATIONS: [__dirname + '/migrations/*{.ts,.js}', __dirname + '/migrations/seeds/*{.ts,.js}'],
+  CLI: {
+    migrationsDir: 'src/migrations',
+  },
+  MIGRATIONS_RUN: false,
+};
 
-  let ormconfig: TypeOrmModuleOptions = {
-    name: 'default',
-    type: 'mysql',
-    database: '../target/db/sqlite-dev-db.sql',
-    logging: true,
-    synchronize: true,
-    entities: commonConf.ENTITIES,
-    migrations: commonConf.MIGRATIONS,
-    cli: commonConf.CLI,
-    migrationsRun: commonConf.MIGRATIONS_RUN,
-  };
+const ormConfig: TypeOrmModuleOptions = {
+  name: 'default',
+  type: 'mysql',
+  database: process.env.DATABASE_NAME,
+  host: process.env.DATABASE_HOST,
+  port: parseInt(process.env.DATABASE_PORT, 10) || 5432,
+  username: process.env.DATABASE_USER,
+  password: process.env.DATABASE_PASSWORD,
+  logging: false,
+  synchronize: false,
+  entities: commonConf.ENTITIES,
+  migrations: commonConf.MIGRATIONS,
+  cli: commonConf.CLI,
+  migrationsRun: commonConf.MIGRATIONS_RUN,
+};
 
-  if (process.env.BACKEND_ENV === 'prod') {
-    ormconfig = {
-      name: 'default',
-      type: 'mysql',
-      database: 'StudentGradingEvalutionSystem',
-      host: 'mysql',
-      // port: ,
-      username: 'root',
-      password: '',
-      logging: false,
-      synchronize: commonConf.SYNCRONIZE,
-      entities: commonConf.ENTITIES,
-      migrations: commonConf.MIGRATIONS,
-      cli: commonConf.CLI,
-      migrationsRun: commonConf.MIGRATIONS_RUN,
-    };
-  }
-
-  if (process.env.BACKEND_ENV === 'test') {
-    ormconfig = {
-      name: 'default',
-      type: 'sqlite',
-      database: ':memory:',
-      keepConnectionAlive: true,
-      logging: true,
-      synchronize: true,
-      entities: commonConf.ENTITIES,
-      migrations: commonConf.MIGRATIONS,
-      cli: commonConf.CLI,
-      migrationsRun: commonConf.MIGRATIONS_RUN,
-    };
-  }
-
-  if (process.env.BACKEND_ENV === 'dev') {
-    ormconfig = {
-      name: 'default',
-      type: 'mysql',
-      database: 'StudentGradingEvalutionSystem',
-      host: 'localhost',
-      // port: ,
-      username: 'root',
-      password: '',
-      logging: false,
-      synchronize: commonConf.SYNCRONIZE,
-      entities: commonConf.ENTITIES,
-      migrations: commonConf.MIGRATIONS,
-      cli: commonConf.CLI,
-      migrationsRun: commonConf.MIGRATIONS_RUN,
-    };
-  }
-
-  return ormconfig;
-}
-
-export { ormConfig };
+export = ormConfig;
